@@ -10,7 +10,14 @@
 
             </div>
         </div>
-        {!! Form::open(array('url' => url('borrower/store'), 'method' => 'post', 'name' => 'form',"enctype"=>"multipart/form-data")) !!}
+
+    <!--     <form method="post" action="/expense/all" enctype="multipart/form-data">
+            {{csrf_field()}}
+            <input type="text" name="brian" value="brian"> 
+            <button type="submit">Send the data</button>
+        </form> -->
+      
+          {!! Form::open(array('url' => url('borrower/store'), 'method' => 'post','class'=>'', 'name' => 'form',"enctype"=>"multipart/form-data")) !!}
         <div class="panel-body">
             <div class="form-group">
                 <div class="row">

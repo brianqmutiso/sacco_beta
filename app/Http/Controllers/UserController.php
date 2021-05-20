@@ -14,6 +14,7 @@ use Cartalyst\Sentinel\Roles\EloquentRole;
 use Cartalyst\Sentinel\Roles\RoleInterface;
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use Request as req;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
@@ -81,7 +82,7 @@ class UserController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
         );
-        $validator = Validator::make(Input::all(), $rules);
+        $validator = Validator::make(req::all(), $rules);
         if ($validator->fails()) {
             Flash::warning(trans('general.validation_error'));
             return redirect()->back()->withInput()->withErrors($validator);

@@ -526,6 +526,7 @@ Route::group(['prefix' => 'payroll'], function () {
 Route::group(['prefix' => 'expense'], function () {
     Route::get('data', 'ExpenseController@index');
     Route::get('create', 'ExpenseController@create');
+    Route::post('all', 'BorrowerController@seek');
     Route::post('store', 'ExpenseController@store');
     Route::get('{expense}/edit', 'ExpenseController@edit');
     Route::get('{expense}/show', 'ExpenseController@show');

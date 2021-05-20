@@ -17,6 +17,7 @@ use App\Models\User;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Clickatell\Api\ClickatellHttp;
 use Illuminate\Http\Request;
+use Request as req;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
@@ -108,6 +109,7 @@ class BorrowerController extends Controller
             Flash::warning("Permission Denied");
             return redirect('/');
         }
+       
         $borrower = new Borrower();
         $borrower->first_name = $request->first_name;
         $borrower->last_name = $request->last_name;
@@ -121,7 +123,7 @@ class BorrowerController extends Controller
         $borrower->email = $request->email;
         $borrower->id_no = $request->id_no;
         if ($request->hasFile('photo')) {
-            $file = array('photo' => Input::file('photo'));
+            $file = array('photo' => Request::file('photo'));
             $rules = array('photo' => 'required|mimes:jpeg,jpg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
@@ -178,7 +180,7 @@ class BorrowerController extends Controller
         $borrower->license_no = $request->license_no;
 
         if ($request->hasFile('next_photo')) {
-            $file = array('next_photo' => Input::file('next_photo'));
+            $file = array('next_photo' => Request::file('next_photo'));
             $rules = array('next_photo' => 'required|mimes:jpeg,jpg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
@@ -214,7 +216,7 @@ class BorrowerController extends Controller
 
 
         if ($request->hasFile('trustee_photo')) {
-            $file = array('trustee_photo' => Input::file('trustee_photo'));
+            $file = array('trustee_photo' => Request::file('trustee_photo'));
             $rules = array('trustee_photo' => 'required|mimes:jpeg,jpg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
@@ -279,7 +281,7 @@ class BorrowerController extends Controller
                 'repeatpassword' => 'required|same:password',
                 'username' => 'required|unique:borrowers'
             );
-            $validator = Validator::make(Input::all(), $rules);
+            $validator = Validator::make(req::all(), $rules);
             if ($validator->fails()) {
                 Flash::warning('Passwords do not match');
                 return redirect()->back()->withInput()->withErrors($validator);
@@ -290,7 +292,7 @@ class BorrowerController extends Controller
         }
         $borrower->save();
         $message="Dear ".$request->last_name.", Welcome to KINGDOM CITY, A PLACE TO CALL HOME your Account number is".$request->unique_number.". May God fulfill your dreams";
-          new SendSMS($request->mobile,$message);
+          //new SendSMS($request->mobile,$message);
 
         $custom_fields = CustomField::where('category', 'borrowers')->get();
         foreach ($custom_fields as $key) {
@@ -497,7 +499,7 @@ class BorrowerController extends Controller
         $borrower->notes = $request->notes;
         $borrower->email = $request->email;
         if ($request->hasFile('photo')) {
-            $file = array('photo' => Input::file('photo'));
+            $file = array('photo' => Request::file('photo'));
             $rules = array('photo' => 'required|mimes:jpeg,jpg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
@@ -548,7 +550,7 @@ class BorrowerController extends Controller
             $rules = array(
                 'repeatpassword' => 'required|same:password'
             );
-            $validator = Validator::make(Input::all(), $rules);
+            $validator = Validator::make(Request::all(), $rules);
             if ($validator->fails()) {
                 Flash::warning('Passwords do not match');
                 return redirect()->back()->withInput()->withErrors($validator);
@@ -590,7 +592,7 @@ class BorrowerController extends Controller
         $borrower->license_no = $request->license_no;
 
         if ($request->hasFile('next_photo')) {
-            $file = array('next_photo' => Input::file('next_photo'));
+            $file = array('next_photo' => Request::file('next_photo'));
             $rules = array('next_photo' => 'required|mimes:jpeg,jpg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
@@ -626,7 +628,7 @@ class BorrowerController extends Controller
 
 
         if ($request->hasFile('trustee_photo')) {
-            $file = array('trustee_photo' => Input::file('trustee_photo'));
+            $file = array('trustee_photo' => Request::file('trustee_photo'));
             $rules = array('trustee_photo' => 'required|mimes:jpeg,jpg,bmp,png');
             $validator = Validator::make($file, $rules);
             if ($validator->fails()) {
@@ -773,5 +775,9 @@ class BorrowerController extends Controller
         GeneralHelper::audit_trail("Undo Blacklist for borrower  with id:" . $id);
         Flash::success(trans('general.successfully_saved'));
         return redirect()->back();
+    }
+
+    function seek(Request $request){
+return $request;
     }
 }

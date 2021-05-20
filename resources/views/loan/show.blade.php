@@ -69,7 +69,10 @@
                                 <label class="control-label col-md-4"><strong>{{trans_choice('general.age',1)}}
                                         :</strong></label>
                                 <div class="col-md-8" style="padding-top: 9px;">
-                                    <span>{{date("Y-m-d")-$loan->borrower->dob}} {{trans_choice('general.year',2)}}</span>
+                                    <span>
+
+                                    <span>{{date_diff(date_create(date("Y-m-d")),date_create($loan->borrower->dob))->format("%R%y Years")}} {{trans_choice('general.year',2)}}</span>
+                                    </span>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -135,7 +135,8 @@ class LoanController extends Controller
         $custom_fields = CustomField::where('category', 'loans')->get();
         return view('loan.create',
             compact('borrowers', 'loan_disbursed_by', 'loan_products', 'loan_product', 'borrower_id', 'custom_fields',
-                'charges', 'loan_overdue_penalties', 'users'));
+                'charges', 'users'));
+        // 'loan_overdue_penalties'
     }
 
     public function reschedule(Request $request, $id)
@@ -212,21 +213,27 @@ class LoanController extends Controller
             Flash::warning(trans('general.permission_denied'));
             return redirect('/');
         }
+
         $loan_product = LoanProduct::find($request->loan_product_id);
         if ($request->principal > $loan_product->maximum_principal) {
             Flash::warning(trans('general.principle_greater_than_maximum') . "(" . $loan_product->maximum_principal . ")");
+
             return redirect()->back()->withInput();
         }
         if ($request->principal < $loan_product->minimum_principal) {
             Flash::warning(trans('general.principle_less_than_minimum') . "(" . $loan_product->minimum_principal . ")");
+
             return redirect()->back()->withInput();
         }
+
         if ($request->interest_rate > $loan_product->maximum_interest_rate) {
             Flash::warning(trans('general.interest_greater_than_maximum') . "(" . $loan_product->maximum_interest_rate . ")");
+           
             return redirect()->back()->withInput();
         }
         if ($request->interest_rate < $loan_product->minimum_interest_rate) {
             Flash::warning(trans('general.interest_less_than_minimum') . "(" . $loan_product->minimum_interest_rate . ")");
+
             return redirect()->back()->withInput();
         }
 
@@ -379,7 +386,8 @@ class LoanController extends Controller
         $schedules = LoanSchedule::where('loan_id', $loan->id)->orderBy('due_date', 'asc')->get();
         $custom_fields = CustomFieldMeta::where('category', 'loans')->where('parent_id', $loan->id)->get();
         return view('loan.show',
-            compact('loan', 'schedules', 'payments', 'custom_fields', 'loan_disbursed_by', 'guarantors'));
+            compact('loan', 'schedules', 'custom_fields', 'loan_disbursed_by', 'guarantors'));
+        //'payments',
     }
 
     public function approve(Request $request, $id)
@@ -1985,19 +1993,23 @@ class LoanController extends Controller
 
         if ($request->amount > round(GeneralHelper::loan_total_balance($loan->id), 2)) {
             Flash::warning("Amount is more than the balance(" . GeneralHelper::loan_total_balance($loan->id) . ')');
+
             return redirect()->back()->withInput();
 
         }
         if ($request->collection_date > date("Y-m-d")) {
             Flash::warning(trans_choice('general.future_date_error', 1));
+
             return redirect()->back()->withInput();
 
         }
         if ($request->collection_date < $loan->disbursed_date) {
             Flash::warning(trans_choice('general.early_date_error', 1));
+
             return redirect()->back()->withInput();
 
         }
+
         //add interest transaction
         $loan_transaction = new LoanTransaction();
         $loan_transaction->user_id = Sentinel::getUser()->id;

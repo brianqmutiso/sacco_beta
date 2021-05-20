@@ -106,6 +106,8 @@ class ExpenseController extends Controller
             Flash::warning("Permission Denied");
             return redirect('/');
         }
+      
+        
         $expense = new Expense();
         $expense->account_id = $request->account_id;
         $expense->expense_type_id = $request->expense_type_id;
