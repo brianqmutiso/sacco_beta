@@ -550,7 +550,7 @@ class BorrowerController extends Controller
             $rules = array(
                 'repeatpassword' => 'required|same:password'
             );
-            $validator = Validator::make(Request::all(), $rules);
+            $validator = Validator::make(req::all(), $rules);
             if ($validator->fails()) {
                 Flash::warning('Passwords do not match');
                 return redirect()->back()->withInput()->withErrors($validator);
