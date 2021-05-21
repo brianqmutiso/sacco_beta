@@ -1363,28 +1363,43 @@ class ClientController extends Controller
     public function mpesa_combined(Request $request)
     {
         
-  \Log::info($request->getContent());
 
-  return 0;
-        $receipt = $_GET['transaction_id'];
-        $account =$_GET['account'];
-        $amount = $_GET['amount'];
-        $phone = $_GET['phone'];
-        $time = $_GET['transaction_time'];
-        $name= $_GET['firstname']." ".$_GET['middlename']." ".$_GET['lastname'];
+
+$response=$request->getContent();
+
+            $TransID           = $response['TransID'];
+            $TransTime         = $response['TransTime'];
+            $TransAmount       = $response['TransAmount'];
+            $BillRefNumber     = str_replace(' ', '', $response['BillRefNumber']) ;
+            $MSISDN            = $response['MSISDN'];
+            $FirstName         = str_replace(' ', '', $response['FirstName']) ;
+            $MiddleName        = str_replace(' ', '', $response['MiddleName']) ;
+            $LastName          = str_replace(' ', '', $response['LastName']);
+
+
+
+        $receipt = $response['TransID'];
+        $account =$BillRefNumber;
+        $amount = $TransAmount;
+        $phone = $MSISDN;
+        $time = $TransTime;
+        $name= $FirstName." ".$MiddleName." ".$LastName;
         //mpesa transaction save
         $c_mpe = Mpesa::where('transaction_id',$receipt)->first();
+
+          \Log::info($request->getContent());
         if(!empty($c_mpe)){
             echo 1;
+            $used=1;
         }else{
         $mpesa=new Mpesa();
         $mpesa->transaction_id=$receipt;
         $mpesa->transaction_time=$time;
         $mpesa->amount=$amount;
         $mpesa->phone=$phone;
-        $mpesa->firstname=$_GET['firstname'];
-        $mpesa->middlename=$_GET['middlename'];
-        $mpesa->lastname=$_GET['lastname'];
+        $mpesa->firstname=$FirstName;
+        $mpesa->middlename=$MiddleName;
+        $mpesa->lastname=$LastName;
         $mpesa->account=$account;
 
    try {
@@ -1717,13 +1732,20 @@ class ClientController extends Controller
     
         }
          echo 1;
+         $used=1;
         } catch (\Exception $ex) {
             //append exception to errorLog
            $mpesa->used_w = 0;
            $mpesa->save();
            echo 0;
+           $used=0;
         }
+
+
+
+
         }
+
     }
     
     
