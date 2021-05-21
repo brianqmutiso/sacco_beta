@@ -1365,7 +1365,7 @@ class ClientController extends Controller
         
 
 
-$response=$request->getContent();
+$response=json_decode($request->getContent(),true);
 
             $TransID           = $response['TransID'];
             $TransTime         = $response['TransTime'];
