@@ -135,7 +135,7 @@ class BorrowerController extends Controller
             }
 
         }
-        
+
         $borrower->unique_number = $request->unique_number;
         $borrower->dob = $request->dob;
         $borrower->address = $request->address;
@@ -290,8 +290,8 @@ class BorrowerController extends Controller
             }
         }
         $borrower->save();
-        $message="Dear ".$request->last_name.", Welcome to KINGDOM CITY, A PLACE TO CALL HOME your Account number is".$request->unique_number.". May God fulfill your dreams";
-          //new SendSMS($request->mobile,$message);
+        $message="Dear ".$request->last_name.", Welcome to SHAKIVAN ENTERPRISE INVESTMENT your Account number is".$request->unique_number.". May God fulfill your dreams";
+          new SendSMS($request->mobile,$message);
 
         $custom_fields = CustomField::where('category', 'borrowers')->get();
         foreach ($custom_fields as $key) {
@@ -416,8 +416,8 @@ class BorrowerController extends Controller
 
             $borrower->save();
 
-                    $message="Dear ".$value->last_name.", Welcome to KINGDOM CITY, A PLACE TO CALL HOME your Account number is ".$unique.". May God fulfill your dreams";
-                    //new SendSMS($value->mobile,$message);
+                    $message="Dear ".$value->last_name.", Welcome to SHAKIVAN ENTERPRISE, A PLACE TO CALL HOME your Account number is ".$unique.". May God fulfill your dreams";
+                    new SendSMS($value->mobile,$message);
 
                     GeneralHelper::audit_trail("Added borrower  with id:" . $borrower->id);
         }}

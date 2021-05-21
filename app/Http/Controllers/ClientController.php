@@ -25,6 +25,8 @@ use App\Models\Setting;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use PDF;
 use Illuminate\Http\Request;
+use DB;
+use AfricasTalking\SDK\AfricasTalking;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
@@ -1652,11 +1654,14 @@ $response=json_decode($request->getContent(),true);
                         $journal->reference = $savings_transaction->id;
                         $journal->save();
                     }
-                  /*  if (!empty($borrower->mobile)) {
+
+                    $username = env('AFRIUSERNAME'); // use 'sandbox' for development in the test 
+
+                    if (!empty($borrower->mobile)) {
                         $message = "Dear " . $borrower->last_name . ", We have received amount ksh." . $amount . " for account " . $account . ". You balance is ksh." . number_format(\App\Helpers\GeneralHelper::savings_account_balance($borrower->id), 2);
                         new SendSMS($borrower->mobile, $message);
                     }
-                    */
+                    
                     $mpesa->used_w = 1;
                     $mpesa->save();
          
@@ -1715,11 +1720,11 @@ $response=json_decode($request->getContent(),true);
                    //alert admin that no account has been set
                }
                
-                  /*  if (!empty($borrower->mobile)) {
+                    if (!empty($borrower->mobile)) {
                         $message = "Dear " . $borrower->last_name . ", We have received amount ksh." . $amount . " for account " . $account . ". You balance is ksh." . number_format(\App\Helpers\GeneralHelper::savings_account_balance($borrower->id), 2);
                         new SendSMS($borrower->mobile, $message);
                     }
-                    */
+                    
                     $mpesa->used_w = 1;
                     $mpesa->save();
                     
