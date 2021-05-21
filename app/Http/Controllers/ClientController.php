@@ -1363,7 +1363,9 @@ class ClientController extends Controller
     public function mpesa_combined()
     {
         
+  \Log::info($request->getContent());
 
+  return 0;
         $receipt = $_GET['transaction_id'];
         $account =$_GET['account'];
         $amount = $_GET['amount'];

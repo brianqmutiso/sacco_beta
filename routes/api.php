@@ -19,3 +19,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('mvalidates', 'ClientController@mpesa_combined');
 
 Route::post('mconfirms', 'ClientController@mpesa_combined');
+Route::get('register', 'payments@register_url');
+
