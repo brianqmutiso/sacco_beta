@@ -1993,19 +1993,19 @@ class LoanController extends Controller
 
         if ($request->amount > round(GeneralHelper::loan_total_balance($loan->id), 2)) {
             Flash::warning("Amount is more than the balance(" . GeneralHelper::loan_total_balance($loan->id) . ')');
-return "Amount is more than the balance(" . GeneralHelper::loan_total_balance($loan->id) . ')';
+
             return redirect()->back()->withInput();
 
         }
         if ($request->collection_date > date("Y-m-d")) {
             Flash::warning(trans_choice('general.future_date_error', 1));
-return trans_choice('general.future_date_error', 1);
+
             return redirect()->back()->withInput();
 
         }
         if ($request->collection_date < $loan->disbursed_date) {
             Flash::warning(trans_choice('general.early_date_error', 1));
-return trans_choice('general.future_date_error', 1);
+
             return redirect()->back()->withInput();
 
         }

@@ -17,14 +17,13 @@ use App\Models\User;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Clickatell\Api\ClickatellHttp;
 use Illuminate\Http\Request;
-use Request as req;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Laracasts\Flash\Flash;
 use Excel;
-
+use Request as req;
 class BorrowerController extends Controller
 {
     public function __construct()
@@ -109,7 +108,6 @@ class BorrowerController extends Controller
             Flash::warning("Permission Denied");
             return redirect('/');
         }
-       
         $borrower = new Borrower();
         $borrower->first_name = $request->first_name;
         $borrower->last_name = $request->last_name;
@@ -137,6 +135,7 @@ class BorrowerController extends Controller
             }
 
         }
+        
         $borrower->unique_number = $request->unique_number;
         $borrower->dob = $request->dob;
         $borrower->address = $request->address;
@@ -418,7 +417,7 @@ class BorrowerController extends Controller
             $borrower->save();
 
                     $message="Dear ".$value->last_name.", Welcome to KINGDOM CITY, A PLACE TO CALL HOME your Account number is ".$unique.". May God fulfill your dreams";
-                    new SendSMS($value->mobile,$message);
+                    //new SendSMS($value->mobile,$message);
 
                     GeneralHelper::audit_trail("Added borrower  with id:" . $borrower->id);
         }}
@@ -550,7 +549,7 @@ class BorrowerController extends Controller
             $rules = array(
                 'repeatpassword' => 'required|same:password'
             );
-            $validator = Validator::make(req::all(), $rules);
+            $validator = Validator::make(Request::all(), $rules);
             if ($validator->fails()) {
                 Flash::warning('Passwords do not match');
                 return redirect()->back()->withInput()->withErrors($validator);
@@ -775,9 +774,5 @@ class BorrowerController extends Controller
         GeneralHelper::audit_trail("Undo Blacklist for borrower  with id:" . $id);
         Flash::success(trans('general.successfully_saved'));
         return redirect()->back();
-    }
-
-    function seek(Request $request){
-return $request;
     }
 }
