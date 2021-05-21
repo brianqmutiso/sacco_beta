@@ -1360,7 +1360,7 @@ class ClientController extends Controller
         $saving=Saving::findOrFail(3);
         echo $saving->savings_product->chart_reference->id;
     }
-    public function mpesa_combined()
+    public function mpesa_combined(Request $request)
     {
         
   \Log::info($request->getContent());
