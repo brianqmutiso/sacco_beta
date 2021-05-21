@@ -37,6 +37,7 @@ $result   = $sms->send([
     'to'      => $mobile,
     'message' => $message
 ]);
+\Log::info($result);
       
     }
 }
