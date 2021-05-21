@@ -59,8 +59,9 @@ class GuarantorController extends Controller
             $countries[$key->id] = $key->name;
         }
         //get custom fields
+        //'user',
         $custom_fields = CustomField::where('category', 'guarantors')->get();
-        return view('guarantor.create', compact('user', 'custom_fields', 'countries'));
+        return view('guarantor.create', compact( 'custom_fields', 'countries'));
     }
 
     /**
