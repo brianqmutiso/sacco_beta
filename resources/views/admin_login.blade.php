@@ -29,12 +29,12 @@
             </div>
         @endif
         <div class="text-center">
-            <div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>
+          
         </div>
         {!! Form::open(array('url' => url('login'), 'method' => 'post', 'name' => 'form','class'=>'f-login-form')) !!}
         <div class="text-center">
 
-            <h5 class="content-group"><p class="login-box-msg">{{ trans('general.sign_in') }}</p>
+            <h5 class="content-group"><p class="login-box-msg">SHEKIVAH ENTERPRISES  INVESTMENT</p>
             </h5>
         </div>
         <div class="form-group has-feedback has-feedback-left">
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button type="submit" class="btn bg-pink-400 btn-block">{{ trans('general.login') }} <i
+            <button type="submit" class="btn btn-block" style="background: green; color: white">{{ trans('general.login') }} <i
                         class="icon-arrow-right14 position-right"></i></button>
         </div>
         {!! Form::close() !!}
@@ -80,13 +80,13 @@
         <div class="row">
             <div class="col-xs-8">
                 <div class="">
-                    <a href="javascript:;" class="btn bg-pink-400" id="back-btn"><i
+                    <a href="javascript:;" class="btn bg-green-400" id="back-btn"><i
                                 class="fa fa-backward"></i> {{ trans('general.back') }}</a>
                 </div>
             </div>
             <div class="col-xs-4">
                 <button type="submit"
-                        class="btn bg-pink-400">{{ trans('general.reset') }}</button>
+                        class="btn bg-green-400">{{ trans('general.reset') }}</button>
             </div>
             <!-- /.col -->
         </div>

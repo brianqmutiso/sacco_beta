@@ -55,7 +55,7 @@
 </head>
 <body class="">
 <!-- Main navbar -->
-<div class="navbar navbar-inverse bg-indigo">
+<div class="navbar navbar-inverse bg-green">
     <div class="navbar-header">
         <a class="navbar-brand"
            href="{{url('/')}}">{{ \App\Models\Setting::where('setting_key','company_name')->first()->setting_value }}</a>
@@ -74,7 +74,7 @@
 
         <div class="navbar-right">
             <p class="navbar-text">Hello, {{ Sentinel::getUser()->first_name }} {{ Sentinel::getUser()->last_name }}</p>
-            <p class="navbar-text"><span class="label bg-success-400">Online</span></p>
+           
         </div>
     </div>
 </div>
