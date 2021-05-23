@@ -802,15 +802,13 @@ class ReportController extends Controller
             ]);
 
 
-            Excel::create(trans_choice('general.balance', 1) . ' ' . trans_choice('general.sheet',
-                    1) . ' : ' . $request->start_date,
-                function ($excel) use ($data) {
+
+           return Excel::download( function ($excel) use ($data) {
                     $excel->sheet('Sheet', function ($sheet) use ($data) {
                         $sheet->fromArray($data, null, 'A1', false, false);
                         $sheet->mergeCells('A1:C1');
                     });
-
-                })->download('csv');
+                },"export.csv");
         }
     }
 
@@ -906,6 +904,17 @@ class ReportController extends Controller
                 });
 
             })->download('xls');
+
+        return   Excel::download(
+            function ($excel) use ($data) {
+                $excel->sheet('Sheet', function ($sheet) use ($data) {
+                    $sheet->fromArray($data, null, 'A1', false, false);
+                    $sheet->mergeCells('A1:F1');
+                });
+
+            },"export.csv");
+
+        
     }
 
     public function expected_repayments_csv(Request $request)
@@ -979,12 +988,12 @@ class ReportController extends Controller
         }
         $start_date = $request->start_date;
         $end_date = $request->end_date;
-        if (!empty($start_date)) {
+       
             $data = LoanTransaction::where('transaction_type',
                 'repayment')->where('reversed', 0)->where('branch_id',
                 session('branch_id'))->whereBetween('date',
                 [$start_date, $end_date])->get();
-        }
+        
         return view('loan_report.repayments_report',
             compact('start_date',
                 'end_date', 'data'));
@@ -1527,7 +1536,7 @@ class ReportController extends Controller
 
         return view('loan_report.arrears_report',
             compact('start_date',
-                'end_date', 'data'));
+                'end_date', ));
     }
 
     public function arrears_report_pdf(Request $request)
@@ -1909,6 +1918,17 @@ class ReportController extends Controller
         foreach (LoanProduct::all() as $key) {
             $loan_products[$key->id] = $key->name;
         }
+
+
+           if ($request->loan_product_id == "-1") {
+                $data = Loan::where('status', 'disbursed')->where('branch_id',
+                    session('branch_id'))->whereBetween('release_date',
+                    [$start_date, $end_date])->get();
+            } else {
+                $data = Loan::where('loan_product_id', $request->loan_product_id)->where('branch_id',
+                    session('branch_id'))->where('status', 'disbursed')->whereBetween('release_date',
+                    [$start_date, $end_date])->get();
+            }
         if (!empty($start_date)) {
             //get disbursed loans within specified period and officer
             if ($request->loan_product_id == "-1") {
@@ -1921,6 +1941,8 @@ class ReportController extends Controller
                     [$start_date, $end_date])->get();
             }
         }
+
+
 
         return view('loan_report.disbursed_loans',
             compact('start_date',
@@ -2195,7 +2217,7 @@ class ReportController extends Controller
 
         return view('borrower_report.borrower_numbers',
             compact('start_date',
-                'end_date', 'data'));
+                'end_date', ));
     }
 
     public function borrower_numbers_pdf(Request $request)
@@ -2371,7 +2393,7 @@ class ReportController extends Controller
 
         return view('financial_report.provisioning',
             compact('start_date',
-                'end_date', 'data'));
+                'end_date', ));
     }
 
     public function provisioning_pdf(Request $request)
@@ -2839,7 +2861,7 @@ class ReportController extends Controller
 
         return view('company_report.products_summary',
             compact('start_date',
-                'end_date', 'data'));
+                'end_date', ));
     }
 
     public function products_summary_pdf(Request $request)
@@ -3345,6 +3367,10 @@ class ReportController extends Controller
         }
         $start_date = $request->start_date;
         $end_date = $request->end_date;
+
+            $data = SavingTransaction::where('reversed', 0)->where('branch_id',
+                session('branch_id'))->whereBetween('date',
+                [$start_date, $end_date])->get();
         if (!empty($start_date)) {
             $data = SavingTransaction::where('reversed', 0)->where('branch_id',
                 session('branch_id'))->whereBetween('date',
