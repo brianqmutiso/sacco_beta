@@ -1578,6 +1578,13 @@ $response=json_decode($request->getContent(),true);
                 $l->status = "closed";
                 $l->save();
             }
+            $borrower=Borrower::where('id',$loan->borrower_id)->first();
+
+              if (!empty($borrower->mobile)) {
+                        $message = "Dear " . $borrower->last_name . ",Loan Repayment of ksh." . $amount . " for account " . $loan->id . "has been received. You balance is ksh." . GeneralHelper::loan_total_balance($loan->id);
+                        new SendSMS($borrower->mobile, $message);
+                    }
+                    
             
           //  event(new RepaymentCreated($loan_transaction));
             
@@ -1655,7 +1662,6 @@ $response=json_decode($request->getContent(),true);
                         $journal->save();
                     }
 
-                    $username = env('AFRIUSERNAME'); // use 'sandbox' for development in the test 
 
                     if (!empty($borrower->mobile)) {
                         $message = "Dear " . $borrower->last_name . ", We have received amount ksh." . $amount . " for account " . $account . ". You balance is ksh." . number_format(\App\Helpers\GeneralHelper::savings_account_balance($borrower->id), 2);
