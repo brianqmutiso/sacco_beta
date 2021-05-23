@@ -337,7 +337,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if(Sentinel::hasAccess('payroll'))
+                    <!--@if(Sentinel::hasAccess('payroll'))
                         <li class="treeview @if(Request::is('payroll/*')) active @endif">
                             <a href="#">
                                 <i class="fa fa-paypal"></i> <span>{{trans_choice('general.payroll',1)}}</span>
@@ -360,7 +360,7 @@
                                 @endif
                             </ul>
                         </li>
-                    @endif
+                    @endif -->
                     @if(Sentinel::hasAccess('expenses'))
                         <li class="treeview @if(Request::is('expense/*')) active @endif">
                             <a href="#">
@@ -524,7 +524,7 @@
                             </ul>
                         </li>
                     @endif
-                    @if(Sentinel::hasAccess('custom_fields'))
+                    <!--@if(Sentinel::hasAccess('custom_fields'))
                         <li class="treeview @if(Request::is('custom_field/*')) active @endif">
                             <a href="#">
                                 <i class="fa fa-users"></i> <span>{{trans_choice('general.custom_field',2)}}</span>
@@ -542,7 +542,7 @@
                                 @endif
                             </ul>
                         </li>
-                    @endif
+                    @endif -->
                     @if(Sentinel::hasAccess('users'))
                         <li class="treeview @if(Request::is('user/*')) active @endif">
                             <a href="{{ url('user/data') }}">
