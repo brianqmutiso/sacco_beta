@@ -380,7 +380,10 @@ class UserController extends Controller
         //return print_r($request->permission);
         $role = Sentinel::findRoleById($id);
         $role->name = $request->name;
-        $role->slug = str_slug($request->name, '_');
+
+     
+        $role->slug = str_replace(' ', '_', $request->name);;
+
         $role->permissions = array();
         $role->save();
         //remove permissions which have not been ticked

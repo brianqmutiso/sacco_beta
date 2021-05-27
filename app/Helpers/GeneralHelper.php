@@ -33,6 +33,8 @@ use App\Models\Setting;
 use App\Models\SmsGateway;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Str;
+use AfricasTalking\SDK\AfricasTalking;
+
 
 class GeneralHelper
 {
@@ -1333,12 +1335,41 @@ class GeneralHelper
                 $append .= "&" . $active_sms->msg_name . "=" . $msg;
                 $url = $active_sms->url . $append;
                 //send sms here
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, $url);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_VERBOSE, true);
-                $curl_scraped_page = curl_exec($ch);
-                curl_close($ch);
+                // $ch = curl_init();
+                // curl_setopt($ch, CURLOPT_URL, $url);
+                // curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                // curl_setopt($ch, CURLOPT_VERBOSE, true);
+                // $curl_scraped_page = curl_exec($ch);
+                // curl_close($ch);
+
+
+
+$apiKey   ="30ef9bf5ba6aaafffcf0afb054c3f106425b9d9e6eb98c88cf47b6728aa38452";
+$username="passsasa";
+$AT       = new AfricasTalking($username, $apiKey);
+// $sms      = $AT->sms();
+
+$mobileInput=$to;
+$message=$msg;
+$pattern = "/^(0)\d{9}$/";
+$pattern1 = "/^(254)\d{9}$/";
+$pattern2 = "/^(\+254)\d{9}$/";
+if (preg_match($pattern, $mobileInput)) {
+  # code...
+  $mobile="+254".substr($mobileInput,1);
+}
+else if(preg_match($pattern2, $mobileInput)){
+$mobile=$mobileInput;
+}
+else if(preg_match($pattern1, $mobileInput)){
+$mobile="+".$mobileInput;
+}
+$sms      = $AT->sms();
+$result   = $sms->send([
+    'to'      => $mobile,
+    'message' => $message
+]);
+\Log::info($result);
             }
         }
 

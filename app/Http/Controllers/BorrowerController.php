@@ -93,6 +93,7 @@ class BorrowerController extends Controller
         //get custom fields
 
         $custom_fields = CustomField::where('category', 'borrowers')->get();
+
         return view('borrower.create', compact('user', 'custom_fields','countries','unique'));
     }
 
@@ -290,7 +291,7 @@ class BorrowerController extends Controller
             }
         }
         $borrower->save();
-        $message="Dear ".$request->last_name.", Welcome to SHAKIVAN ENTERPRISE INVESTMENT your Account number is".$request->unique_number.". May God fulfill your dreams";
+        $message="Dear ".$request->last_name.", Welcome to SHAKIVAN ENTERPRISE INVESTMENT your Account number is".$request->id_no.". May God fulfill your dreams";
           new SendSMS($request->mobile,$message);
 
         $custom_fields = CustomField::where('category', 'borrowers')->get();

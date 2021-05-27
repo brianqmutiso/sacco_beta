@@ -35,6 +35,7 @@ use App\Models\LoanTransaction;
 use App\Models\Setting;
 use App\Models\Sms;
 use App\Models\User;
+use App\Helpers\SendSMS;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Http\Request;
 use App\Http\Requests;
@@ -360,6 +361,12 @@ class LoanController extends Controller
                 'Y-m-d');
         }
         $loan->save();
+
+
+        $borrower=Borrower::find($request->borrower_id);
+
+           $message = "Dear " . $borrower->first_name." ".$borrower->last_name.", " . "Loan Application of ksh." .  $request->principal . " was successful and is currently been processed. Update Will be given on status of loan";
+                        new SendSMS($borrower->mobile, $message);
         GeneralHelper::audit_trail("Added loan with id:" . $loan->id);
         Flash::success(trans('general.successfully_saved'));
         return redirect('loan/data');
@@ -404,6 +411,9 @@ class LoanController extends Controller
         $loan->approved_amount = $request->approved_amount;
         $loan->principal = $request->approved_amount;
         $loan->save();
+ $borrower=Borrower::find($loan->borrower_id);
+        $message = "Dear " . $borrower->first_name." ".$borrower->last_name.", " . "Loan  of ksh." .  $request->approved_amount . " was was approved successfully. awaiting disbusement";
+                        new SendSMS($borrower->mobile, $message);
         GeneralHelper::audit_trail("Approved loan with id:" . $loan->id);
         Flash::success(trans('general.successfully_saved'));
         return redirect('loan/' . $id . '/show');
@@ -908,6 +918,9 @@ class LoanController extends Controller
                 $journal->save();
             }
         }
+          $borrower=Borrower::find($loan->borrower_id);
+        $message = "Dear " . $borrower->first_name." ".$borrower->last_name.", " . "Loans disbursed  successfully. Collect Your cash from office. Thank You.";
+                        new SendSMS($borrower->mobile, $message);
         GeneralHelper::audit_trail("Disbursed loan with id:" . $loan->id);
         Flash::success(trans('general.successfully_saved'));
         return redirect('loan/' . $loan->id . '/show');
@@ -1442,6 +1455,7 @@ class LoanController extends Controller
                 $journal->save();
             }
         }
+      
         GeneralHelper::audit_trail("Rescheduled loan with id:" . $l->id);
         Flash::success(trans('general.successfully_saved'));
         return redirect('loan/' . $loan->id . '/show');
@@ -1501,6 +1515,10 @@ class LoanController extends Controller
         $loan->declined_notes = $request->declined_notes;
         $loan->declined_by_id = Sentinel::getUser()->id;
         $loan->save();
+
+         $borrower=Borrower::find($loan->borrower_id);
+        $message = "Dear " . $borrower->first_name." ".$borrower->last_name.", " . "Your Loan Request of Ksh.".$loan->principal." could not be processed. contact the office for more details. tel/0700000000";
+                        new SendSMS($borrower->mobile, $message);
         GeneralHelper::audit_trail("Declined loan with id:" . $loan->id);
         Flash::success(trans('general.successfully_saved'));
         return redirect('loan/' . $id . '/show');

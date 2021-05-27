@@ -41,9 +41,9 @@
                         {!! Form::label('gender',trans_choice('general.gender',1)." *",array('class'=>'')) !!}
                         {!! Form::select('gender',array('Male'=>trans_choice('general.male',1),'Female'=>trans_choice('general.female',1)),'Male', array('class' => 'form-control','required'=>'required')) !!}
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4" style="display: none;">
                         {!! Form::label('unique_number',trans_choice('general.unique_number',1),array('class'=>'')) !!}
-                        {!! Form::text('unique_number',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.unique_number',1))) !!}
+                        {!! Form::text('unique_number',$unique, array('class' => 'form-control', 'placeholder'=>trans_choice('general.unique_number',1))) !!}
                     </div>
                     <div class="col-md-4">
                         {!! Form::label('country',trans_choice('general.country',1)." *",array('class'=>'')) !!}
@@ -167,11 +167,11 @@
                 <div class="row">
                     <div class="col-md-6">
                         {!! Form::label('first_name',trans_choice('general.first_name',1)." ",array('class'=>'')) !!}
-                        {!! Form::text('next_sirname',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.first_name',1),'required'=>'required')) !!}
+                        {!! Form::text('next_sirname',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.first_name',1))) !!}
                     </div>
                     <div class="col-md-6">
                         {!! Form::label('last_name',trans_choice('general.last_name',1)." ",array('class'=>'')) !!}
-                        {!! Form::text('next_other',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.last_name',1),'required'=>'required')) !!}
+                        {!! Form::text('next_other',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.last_name',1))) !!}
                     </div>
                 </div>
             </div>
@@ -228,16 +228,16 @@
                 <div class="row">
                     <div class="col-md-4">
                         {!! Form::label('business_type',"Business Type"." ",array('class'=>'')) !!}
-        {!! Form::text('business_type',null, array('class' => 'form-control', 'placeholder'=>"Business Type",'required'=>'required')) !!}
+        {!! Form::text('business_type',null, array('class' => 'form-control', 'placeholder'=>"Business Type")) !!}
                 </div>
                 <div class="col-md-4">
 {!! Form::label('business_location',"Business Location"." ",array('class'=>'')) !!}
-        {!! Form::text('business_location',null, array('class' => 'form-control', 'placeholder'=>"Business Location",'required'=>'required')) !!}
+        {!! Form::text('business_location',null, array('class' => 'form-control', 'placeholder'=>"Business Location")) !!}
                 </div>
 
                 <div class="col-md-4">
                     {!! Form::label('year_started',"Year Business Started"." ",array('class'=>'')) !!}
-                    {!! Form::text('year_started',null, array('class' => 'form-control', 'placeholder'=>"Year Business Started",'required'=>'required')) !!}
+                    {!! Form::text('year_started',null, array('class' => 'form-control', 'placeholder'=>"Year Business Started")) !!}
                 </div>
 
                 <div class="col-md-4">
@@ -253,16 +253,16 @@
                 <div class="row">
                     <div class="col-md-4">
                         {!! Form::label('stock_value',"Estimated Stock Value"." ",array('class'=>'')) !!}
-                        {!! Form::text('stock_value',null, array('class' => 'form-control', 'placeholder'=>"Estimated Stock Value",'required'=>'required')) !!}
+                        {!! Form::text('stock_value',null, array('class' => 'form-control', 'placeholder'=>"Estimated Stock Value")) !!}
                     </div>
                     <div class="col-md-4">
                         {!! Form::label('licensed',"Licensed Yes/No"." ",array('class'=>'')) !!}
-                        {!! Form::text('licensed',null, array('class' => 'form-control', 'placeholder'=>"Yes or No",'required'=>'required')) !!}
+                        {!! Form::text('licensed',null, array('class' => 'form-control', 'placeholder'=>"Yes or No")) !!}
                     </div>
 
                     <div class="col-md-4">
                         {!! Form::label('license_no',"License No"." ",array('class'=>'')) !!}
-                        {!! Form::text('license_no',null, array('class' => 'form-control', 'placeholder'=>"License No",'required'=>'required')) !!}
+                        {!! Form::text('license_no',null, array('class' => 'form-control', 'placeholder'=>"License No")) !!}
                     </div>
 
 
