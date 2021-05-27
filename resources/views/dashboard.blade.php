@@ -200,6 +200,52 @@
                     </div>
                 </div>
             @endif
+
+
+
+            @if(Sentinel::hasAccess('dashboard.loans_disbursed'))
+            <!-- Sales stats -->
+                <div class="panel panel-flat">
+                    <div class="panel-heading">
+                        <h6 class="panel-title">Absolute Income</h6>
+                        <div class="heading-elements">
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                       
+                        <div class="container-fluid">
+                            <div class="row text-center">
+                                <div class="col-md-4">
+                                    <div class="content-group">
+                                        
+                                    <h5 class="text-semibold no-margin">Interest $ Insurance</h5>
+                                    <span>400000 ksh</span>
+                                     
+
+                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="content-group">
+                                        <h5 class="text-semibold no-margin">Other Fees</h5>
+                                    <span>400000 ksh</span>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <div class="content-group">
+                                        <h5 class="text-semibold no-margin">Gross profit</h5>
+                                    <span>400000 ksh</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
         </div>
 
     </div>
