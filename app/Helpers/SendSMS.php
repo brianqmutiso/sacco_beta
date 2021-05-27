@@ -13,8 +13,8 @@ class SendSMS
     {
 
 
-$apiKey   ="swiftpay";
-$username="2ae24a2f2364955edefc7889b12823b2f81429283a5cda07b2700ae6665dc6ba";
+$apiKey   ="30ef9bf5ba6aaafffcf0afb054c3f106425b9d9e6eb98c88cf47b6728aa38452";
+$username="passsasa";
 $AT       = new AfricasTalking($username, $apiKey);
 // $sms      = $AT->sms();
 
@@ -32,7 +32,7 @@ $mobile=$mobileInput;
 else if(preg_match($pattern1, $mobileInput)){
 $mobile="+".$mobileInput;
 }
-
+$sms      = $AT->sms();
 $result   = $sms->send([
     'to'      => $mobile,
     'message' => $message

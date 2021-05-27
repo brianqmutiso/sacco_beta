@@ -814,9 +814,9 @@
                                             <th style="text-align:right;">
                                                 <b>{{trans_choice('general.fee',2)}}</b>
                                             </th>
-                                            <th style="text-align:right;">
+                                           <!--  <th style="text-align:right;">
                                                 <b>{{trans_choice('general.penalty',1)}}</b>
-                                            </th>
+                                            </th> -->
                                             <th style="text-align:right;">
                                                 <b>{{trans_choice('general.total',1)}}</b>
                                             </th>
@@ -834,9 +834,9 @@
                                             <td style="text-align:right">
                                                 {{number_format(\App\Helpers\GeneralHelper::loan_total_fees($loan->id)+$disbursement_charges,2)}}
                                             </td>
-                                            <td style="text-align:right">
+                                           <!--  <td style="text-align:right">
                                                 {{number_format(\App\Helpers\GeneralHelper::loan_total_penalty($loan->id),2)}}
-                                            </td>
+                                            </td> -->
                                             <td style="text-align:right; font-weight:bold">
                                                 {{number_format(\App\Helpers\GeneralHelper::loan_total_due_amount($loan->id)+$disbursement_charges,2)}}
                                             </td>
@@ -854,9 +854,9 @@
                                             <td style="text-align:right">
                                                 {{number_format($loan_paid_items['fees']+$disbursement_charges,2)}}
                                             </td>
-                                            <td style="text-align:right">
+                                           <!--  <td style="text-align:right">
                                                 {{number_format($loan_paid_items['penalty'],2)}}
-                                            </td>
+                                            </td> -->
                                             <td style="text-align:right; font-weight:bold">
                                                 {{number_format(($loan_paid_items['principal']+$loan_paid_items['interest']+$loan_paid_items['fees']+$loan_paid_items['penalty'])+$disbursement_charges,2)}}
                                             </td>
@@ -876,10 +876,10 @@
                                                 {{number_format((\App\Helpers\GeneralHelper::loan_total_fees($loan->id)-$loan_paid_items['fees']),2)}}
 
                                             </td>
-                                            <td style="text-align:right">
+                                          <!--   <td style="text-align:right">
                                                 {{number_format((\App\Helpers\GeneralHelper::loan_total_penalty($loan->id)-$loan_paid_items['penalty']),2)}}
 
-                                            </td>
+                                            </td> -->
                                             <td style="text-align:right; font-weight:bold">
                                                 {{number_format((\App\Helpers\GeneralHelper::loan_total_due_amount($loan->id)-($loan_paid_items['principal']+$loan_paid_items['interest']+$loan_paid_items['fees']+$loan_paid_items['penalty'])),2)}}
 
