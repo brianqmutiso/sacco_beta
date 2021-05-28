@@ -218,7 +218,7 @@
                                 <div class="col-md-4">
                                     <div class="content-group">
                                         
-                                    <h5 class="text-semibold no-margin">Interest $ Insurance</h5>
+                                    <h5 class="text-semibold no-margin">Interest and Insurance</h5>
                                     <span> ksh. {{number_format(App\Models\LoanSchedule::sum('interest'))}}</span>
                                     
 
