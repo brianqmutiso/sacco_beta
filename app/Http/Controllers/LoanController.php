@@ -919,7 +919,7 @@ class LoanController extends Controller
             }
         }
           $borrower=Borrower::find($loan->borrower_id);
-        $message = "Dear " . $borrower->first_name." ".$borrower->last_name.", " . "Loans disbursed  successfully. Collect Your cash from office. Thank You.";
+        $message = "Dear " . $borrower->first_name." ".$borrower->last_name.", " . "Your loans was disbursed  successfully. Use the following details for the repayment PAYBILL Number: 4050997 and ACCOUNT Number ".$loan->id.". Thank You.";
                         new SendSMS($borrower->mobile, $message);
         GeneralHelper::audit_trail("Disbursed loan with id:" . $loan->id);
         Flash::success(trans('general.successfully_saved'));
