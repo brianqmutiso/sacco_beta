@@ -17,7 +17,8 @@
         "laravel/framework": "^8.40",
         "laravel/tinker": "^2.5",
         "laravelcollective/html": "^6.2",
-        "maatwebsite/excel": "^3.0.1"
+        "maatwebsite/excel": "^3.0.1",
+        "samuelterra22/laravel-report-generator": "^5.2"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
