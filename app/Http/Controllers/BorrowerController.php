@@ -178,6 +178,9 @@ class BorrowerController extends Controller
         $borrower->stock_value = $request->stock_value;
         $borrower->licensed = $request->licensed;
         $borrower->license_no = $request->license_no;
+        $borrower->ref_name=$request->referee_name;
+        $borrower->ref_rel=$request->referee_relationship;
+        $borrower->ref_phone=$request->referee_phone;
 
         if ($request->hasFile('next_photo')) {
             $file = array('next_photo' => Request::file('next_photo'));
