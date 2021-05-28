@@ -49,23 +49,24 @@
                         {!! Form::label('country',trans_choice('general.country',1)." *",array('class'=>'')) !!}
                         {!! Form::select('country_id',$countries,\App\Models\Setting::where('setting_key','company_country')->first()->setting_value,array('class'=>'form-control select2','placeholder'=>'','required'=>'required')) !!}
                     </div>
+                      <div class="col-md-4">
+                        {!! Form::label('id',trans_choice('general.id',1)."/Passport No",array('class'=>'')) !!}
+                        {!! Form::text('id_no',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.numbers_only',1))) !!}
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-3">
-                        {!! Form::label('id',trans_choice('general.id',1)."/Passport No",array('class'=>'')) !!}
-                        {!! Form::text('id_no',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.numbers_only',1))) !!}
-                    </div>
-                    <div class="col-md-3">
+                  
+                    <div class="col-md-4">
                         {!! Form::label('mobile',trans_choice('general.mobile',1),array('class'=>'')) !!}
                         {!! Form::text('mobile',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.numbers_only',1))) !!}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         {!! Form::label('email',trans_choice('general.email',1),array('class'=>'')) !!}
                         {!! Form::text('email',null, array('class' => 'form-control', 'placeholder'=>trans_choice('general.email',1))) !!}
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         {!! Form::label('dob',trans_choice('general.dob',1),array('class'=>'')) !!}
                         {!! Form::text('dob',null, array('class' => 'form-control date-picker', 'placeholder'=>"yyyy-mm-dd")) !!}
                     </div>
@@ -155,7 +156,35 @@
                 </div>
             </div>
         </div>
--->
+--><div class="form-group">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>REFEREE DETAILS</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-md-4">
+                        {!! Form::label('referee_name',"Referee Name"." ",array('class'=>'')) !!}
+        {!! Form::text('referee_name',null, array('class' => 'form-control', 'placeholder'=>"Referee Name",'required'=>'required')) !!}
+                </div>
+                <div class="col-md-4">
+{!! Form::label('referee_relationship',"Referee Relationship"." ",array('class'=>'')) !!}
+        {!! Form::text('referee_relationship',null, array('class' => 'form-control', 'placeholder'=>"Referee Relationship",'required'=>'required')) !!}
+                </div>
+
+                
+
+                <div class="col-md-4">
+{!! Form::label('referee_phone',"Phone Number",array('class'=>'')) !!}
+        {!! Form::text('referee_phone',null, array('class' => 'form-control', 'placeholder'=>"Phone Number",'required'=>'required')) !!}
+                </div>
+
+
+            </div>
+        </div>
+
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-12">
@@ -276,10 +305,10 @@
                 {!! Form::label('notes',trans_choice('general.description',1),array('class'=>'')) !!}
                 {!! Form::textarea('notes',null, array('class' => 'form-control', 'placeholder'=>"",'rows'=>'3')) !!}
             </div>
-            <p class="bg-navy disabled color-palette">{{trans_choice('general.login',1)}} {{trans_choice('general.detail',2)}}</p>
+             <!--<p class="bg-navy disabled color-palette">{{trans_choice('general.login',1)}} {{trans_choice('general.detail',2)}}</p>-->
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-4">
+                   <!-- <div class="col-md-4">
                         {!! Form::label('username',trans_choice('general.username',1),array('class'=>'')) !!}
                         {!! Form::text('username',null, array('class' => 'form-control', 'placeholder'=>"")) !!}
                     </div>
@@ -290,7 +319,7 @@
                     <div class="col-md-4">
                         {!! Form::label('repeatpassword',trans_choice('general.repeat_password',1),array('class'=>'')) !!}
                         {!! Form::password('repeatpassword', array('class' => 'form-control', 'placeholder'=>"")) !!}
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="form-group">
