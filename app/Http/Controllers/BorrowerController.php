@@ -420,7 +420,7 @@ class BorrowerController extends Controller
 
             $borrower->save();
 $unique_number=$request->unique_number;
-                    $message="Dear ".$value->last_name.", Welcome to SHAKIVAN ENTERPRISE, A PLACE TO CALL HOME your Account number is ".$unique_number.". May God fulfill your dreams";
+                    $message="Dear ".$value->last_name.", Welcome to SHAKIVAN ENTERPRISE, A PLACE TO CALL HOME your Account number is ". $unique_number .". May God fulfill your dreams";
                     new SendSMS($value->mobile,$message);
 
                     GeneralHelper::audit_trail("Added borrower  with id:" . $borrower->id);
