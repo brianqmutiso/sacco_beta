@@ -393,8 +393,7 @@ class LoanController extends Controller
         }
         $schedules = LoanSchedule::where('loan_id', $loan->id)->orderBy('due_date', 'asc')->get();
         $custom_fields = CustomFieldMeta::where('category', 'loans')->where('parent_id', $loan->id)->get();
-        return LoanSchedule::sum('interest');
-return OtherIncome::sum('amount');
+     
         return view('loan.show',
             compact('loan', 'schedules', 'custom_fields', 'loan_disbursed_by', 'guarantors'));
         //'payments',
