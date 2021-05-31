@@ -16,7 +16,7 @@
             <div class="form-group">
                 {!! Form::label('name',trans_choice('general.name',1)." *",array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::text('name',null, array('class' => 'form-control', 'placeholder'=>"",)) !!}
+                    {!! Form::text('name',null, array('class' => 'form-control', 'placeholder'=>"",'required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip" title="The name of your loan product"></i>
@@ -28,7 +28,7 @@
                 <div class="col-sm-9">
                     <div class="row">
                         <div class="col-md-3">
-                            {!! Form::text('default_principal',null, array('class' => 'form-control touchspin', 'placeholder'=>trans_choice('general.default',1) ,)) !!}
+                            {!! Form::text('default_principal',null, array('class' => 'form-control touchspin', 'placeholder'=>trans_choice('general.default',1) ,'required'=>'required')) !!}
                         </div>
                         <div class="col-md-3">
                             {!! Form::text('minimum_principal',null, array('class' => 'form-control touchspin', 'placeholder'=>trans_choice('general.min',1),'required'=>'required')) !!}
@@ -234,7 +234,7 @@
             <div class="form-group">
                 {!! Form::label('chart_fund_source_id',trans_choice('general.fund_source',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_fund_source_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_fund_source_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -244,7 +244,7 @@
             <div class="form-group">
                 {!! Form::label('chart_loan_portfolio_id',trans_choice('general.loan',1).' '.trans_choice('general.portfolio',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_loan_portfolio_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_loan_portfolio_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -254,7 +254,7 @@
             <div class="form-group">
                 {!! Form::label('chart_receivable_interest_id',trans_choice('general.interest',1).' '.trans_choice('general.receivable',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_receivable_interest_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_receivable_interest_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
 
@@ -263,7 +263,7 @@
             <div class="form-group">
                 {!! Form::label('chart_receivable_fee_id',trans_choice('general.fee',2).' '.trans_choice('general.receivable',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_receivable_fee_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_receivable_fee_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
 
@@ -272,7 +272,7 @@
             <div class="form-group">
                 {!! Form::label('chart_receivable_penalty_id',trans_choice('general.penalty',2).' '.trans_choice('general.receivable',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_receivable_penalty_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_receivable_penalty_id',$chart_assets,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
 
@@ -282,7 +282,7 @@
             <div class="form-group">
                 {!! Form::label('chart_loan_over_payments_id',trans_choice('general.over_payment',2),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_loan_over_payments_id',$chart_liability,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_loan_over_payments_id',$chart_liability,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -293,7 +293,7 @@
             <div class="form-group">
                 {!! Form::label('chart_income_interest_id',trans_choice('general.income',1).' '.trans_choice('general.for',1).' '.trans_choice('general.interest',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_income_interest_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_income_interest_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -303,7 +303,7 @@
             <div class="form-group">
                 {!! Form::label('chart_income_fee_id',trans_choice('general.income',1).' '.trans_choice('general.from',1).' '.trans_choice('general.fee',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_income_fee_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_income_fee_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -313,7 +313,7 @@
             <div class="form-group">
                 {!! Form::label('chart_income_penalty_id',trans_choice('general.income',1).' '.trans_choice('general.from',1).' '.trans_choice('general.penalty',2),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_income_penalty_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_income_penalty_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -323,7 +323,7 @@
             <div class="form-group">
                 {!! Form::label('chart_income_recovery_id',trans_choice('general.income',1).' '.trans_choice('general.from',1).' '.trans_choice('general.recovery',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_income_recovery_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_income_recovery_id',$chart_income,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
@@ -335,7 +335,7 @@
             <div class="form-group">
                 {!! Form::label('chart_loans_written_off_id',trans_choice('general.loan',2).' '.trans_choice('general.written_off',1),array('class'=>'col-sm-3 control-label')) !!}
                 <div class="col-sm-6">
-                    {!! Form::select('chart_loans_written_off_id',$chart_expenses,null, array('class' => 'form-control select2','placeholder'=>'',)) !!}
+                    {!! Form::select('chart_loans_written_off_id',$chart_expenses,null, array('class' => 'form-control select2','placeholder'=>'','required'=>'required')) !!}
                 </div>
                 <div class="col-sm-3">
                     <i class="icon-info3" data-toggle="tooltip"
