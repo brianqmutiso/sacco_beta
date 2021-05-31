@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Validator;
 use Laracasts\Flash\Flash;
 use Cartalyst\Sentinel\Laravel\Facades\Activation;
+use App\Models\BranchUser;
 
 class UserController extends Controller
 {
@@ -101,6 +102,7 @@ class UserController extends Controller
             $user = Sentinel::registerAndActivate($credentials);
             $role = Sentinel::findRoleByName($request->role);
             $role->users()->attach($user->id);
+            BranchUser::insert(["branch_id"=>1,"user_id"=>$user->id]);
             GeneralHelper::audit_trail("Added user with id:" . $user->id);
             Flash::success("Successfully Saved");
             return redirect('user/data');
