@@ -182,6 +182,15 @@ class UserController extends Controller
             $role->users()->attach($user->id);
         }
         $user = Sentinel::update($user, $credentials);
+
+        $branchUsers=BranchUser::whereUser_id($user->id)->first();
+        if ($branchUsers) {
+            # code...
+
+        }
+        else{
+            BranchUser::insert(["branch_id"=>1,"user_id"=>$user->id]);
+        }
         GeneralHelper::audit_trail("Updated user with id:" . $user->id);
         Flash::success("Successfully Saved");
         return redirect('user/data');
