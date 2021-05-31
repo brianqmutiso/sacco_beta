@@ -359,7 +359,7 @@ class UserController extends Controller
     {
         $role = new EloquentRole();
         $role->name = $request->name;
-        $role->slug = str_slug($request->name, '_');
+        $role->slug = str_replace(' ', '_', $request->name);
         $role->save();
         if (!empty($request->permission)) {
             foreach ($request->permission as $key) {
