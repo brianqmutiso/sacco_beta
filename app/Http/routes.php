@@ -93,13 +93,13 @@ Route::post('reset', 'HomeController@passwordReset');
 Route::get('reset/{id}/{code}', 'HomeController@confirmReset');
 Route::post('reset/{id}/{code}', 'HomeController@completeReset');
 Route::get('check/{id}', 'HomeController@checkStatus');
-// Route::get('no_branch', [
-//     'middleware' => 'sentinel',
-//     function () {
-//         $error = "You don't have permission to access any branch. Please contact your system administrator.";
-//         return view('no_branch', compact('error'));
-//     }
-// ]);
+Route::get('no_branch', [
+    'middleware' => 'sentinel',
+    function () {
+        $error = "You don't have permission to access any branch. Please contact your system administrator.";
+        return view('no_branch', compact('error'));
+    }
+]);
 Route::get('dashboard', [
     'middleware' => ['sentinel', 'branch'],
     function () {
