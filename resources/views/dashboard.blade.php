@@ -203,7 +203,7 @@
 
 
 
-            @if(Sentinel::hasAccess('dashboard.loans_disbursed'))
+            @if(Sentinel::hasAccess('dashboard.total_collections'))
             <!-- Sales stats -->
                 <div class="panel panel-flat">
                     <div class="panel-heading">
