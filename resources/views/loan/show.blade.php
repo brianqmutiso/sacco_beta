@@ -790,7 +790,7 @@
                                                             :</b></h6></div>
                                                 <div class="col-md-6">
                                                     <h6>
-                                                        <b>{{\App\Models\LoanSchedule::where('loan_id', $loan->id)->orderBy('due_date','asc')->get()->last()->due_date}}</b>
+                                                        <b><!-- {{\App\Models\LoanSchedule::where('loan_id', $loan->id)->orderBy('due_date','asc')->get()->last()->due_date}} --></b>
                                                     </h6>
                                                 </div>
                                             </div>
