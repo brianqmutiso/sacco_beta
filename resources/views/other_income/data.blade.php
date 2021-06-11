@@ -20,6 +20,7 @@
                     <thead>
                     <tr>
                         <th>{{trans_choice('general.income',1)}} {{trans_choice('general.type',1)}}</th>
+                          <th>Name</th>
                         <th>{{trans_choice('general.amount',1)}}</th>
                         <th>{{trans_choice('general.date',1)}}</th>
                         <th>{{trans_choice('general.description',1)}}</th>
@@ -35,6 +36,8 @@
                                     {{$key->other_income_type->name}}
                                 @endif
                             </td>
+                            <td>{{\App\Models\Borrower::whereId($key->member_id)->first()->first_name}} {{\App\Models\Borrower::whereId($key->member_id)->first()->last_name}}</td>
+                            <td>{{ number_format($key->amount,2) }}</td>
                             <td>{{ number_format($key->amount,2) }}</td>
                             <td>{{ $key->date }}</td>
 
