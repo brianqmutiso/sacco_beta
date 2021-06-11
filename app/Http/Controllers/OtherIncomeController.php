@@ -47,6 +47,7 @@ class OtherIncomeController extends Controller
             return redirect('/');
         }
         $data = OtherIncome::all();
+        return $data;
 
         return view('other_income.data', compact('data'));
     }
