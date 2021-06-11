@@ -36,7 +36,13 @@
                                     {{$key->other_income_type->name}}
                                 @endif
                             </td>
-                            <td>{{$key->member_id}}</td>
+                            <td>
+
+                                {{$borrower=\App\Models\Borrower::whereId($key->member_id)->first();}}
+  @if($borrower!=null) 
+                                    {{$borrower->first_name}}        {{$borrower->last_name}}
+                                @endif
+                                </td>
                             <td>{{ number_format($key->amount,2) }}</td>
                             <td>{{ number_format($key->amount,2) }}</td>
                             <td>{{ $key->date }}</td>
