@@ -38,7 +38,7 @@
                             </td>
                             <td>
 
-                                {{$borrower=\App\Models\Borrower::whereId($key->member_id)->first()}}
+                                <?php $borrower=\App\Models\Borrower::whereId($key->member_id)->first(); ?>
   @if($borrower!=null) 
                                     {{$borrower->first_name}}        {{$borrower->last_name}}
                                 @endif
