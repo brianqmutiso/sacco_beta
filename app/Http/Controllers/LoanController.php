@@ -138,7 +138,7 @@ class LoanController extends Controller
         return view('loan.create',
             compact('borrowers', 'loan_disbursed_by', 'loan_products', 'loan_product', 'borrower_id', 'custom_fields',
                 'charges', 'users'));
-        // 'loan_overdue_penalties'
+  
     }
 
     public function reschedule(Request $request, $id)
